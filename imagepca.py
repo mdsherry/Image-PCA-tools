@@ -1,15 +1,16 @@
+#!/usr/bin/env python
 from PIL import Image
 import sys
+import os.path
 
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.mlab import PCA
 import numpy
 import math
 
 f = open( sys.argv[1], 'rb' )
-fout = open( sys.argv[1] + 'pca-delta.png', 'wb' )
-fout2 = open( sys.argv[1] + 'pca-cross.png', 'wb' )
+root, ext = os.path.splitext( sys.argv[1] )
+fout = open( root + '-pca-delta.png', 'wb' )
+fout2 = open( root + '-pca-cross.png', 'wb' )
 im  = Image.open( f )
 im2 = Image.new( "L", im.size )
 data = numpy.array(im.getdata())
